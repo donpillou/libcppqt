@@ -6,5 +6,10 @@ set QTDIR=%~dp0\qt
 rmdir /S /Q include
 perl bin\syncqt -copy
 mv include ..
+copy /Y src\corelib\global\qconfig.h ..\include\QtCore\qconfig.h
+rem md ..\src
+rem md ..\src\corelib
+rem md ..\src\corelib\global
+rem copy /Y src\corelib\global\qconfig.cpp ..\src\corelib\global\qconfig.cpp
 perl bin\syncqt
 cd ..
