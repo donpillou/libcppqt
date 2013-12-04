@@ -44,11 +44,11 @@
 
 #include <stddef.h>
 
-#define QT_VERSION_STR   "4.8.6"
+#define QT_VERSION_STR   "4.8.5"
 /*
    QT_VERSION is (major << 16) + (minor << 8) + patch.
 */
-#define QT_VERSION 0x040806
+#define QT_VERSION 0x040805
 /*
    can be used like #if (QT_VERSION >= QT_VERSION_CHECK(4, 4, 0))
 */
@@ -327,8 +327,8 @@ namespace QT_NAMESPACE {}
 #  if !defined(MAC_OS_X_VERSION_10_8)
 #       define MAC_OS_X_VERSION_10_8 MAC_OS_X_VERSION_10_7 + 1
 #  endif
-#  if !defined(MAC_OS_X_VERSION_10_9)
-#       define MAC_OS_X_VERSION_10_9 MAC_OS_X_VERSION_10_8 + 1
+#  if (MAC_OS_X_VERSION_MAX_ALLOWED > MAC_OS_X_VERSION_10_8)
+#    warning "This version of Mac OS X is unsupported"
 #  endif
 #endif
 
@@ -718,10 +718,8 @@ namespace QT_NAMESPACE {}
     in which case _BOOL is not defined
         this is the default in 4.2 compatibility mode triggered by -compat=4 */
 #  if __SUNPRO_CC >= 0x500
-#    if __SUNPRO_CC < 0x590
-#      define QT_NO_TEMPLATE_TEMPLATE_PARAMETERS
-       /* see http://www.oracle.com/technetwork/systems/cccompare-137792.html */
-#    endif
+#    define QT_NO_TEMPLATE_TEMPLATE_PARAMETERS
+   /* see http://developers.sun.com/sunstudio/support/Ccompare.html */
 #    if __SUNPRO_CC >= 0x590
 #      define Q_ALIGNOF(type)   __alignof__(type)
 #      define Q_TYPEOF(expr)    __typeof__(expr)
@@ -1591,7 +1589,6 @@ public:
         WV_VISTA    = 0x0080,
         WV_WINDOWS7 = 0x0090,
         WV_WINDOWS8 = 0x00a0,
-        WV_WINDOWS8_1 = 0x00b0,
         WV_NT_based = 0x00f0,
 
         /* version numbers */
@@ -1602,7 +1599,6 @@ public:
         WV_6_0      = WV_VISTA,
         WV_6_1      = WV_WINDOWS7,
         WV_6_2      = WV_WINDOWS8,
-        WV_6_3      = WV_WINDOWS8_1,
 
         WV_CE       = 0x0100,
         WV_CENET    = 0x0200,
@@ -1629,7 +1625,6 @@ public:
         MV_10_6 = 0x0008,
         MV_10_7 = 0x0009,
         MV_10_8 = 0x000A,
-        MV_10_9 = 0x000B,
 
         /* codenames */
         MV_CHEETAH = MV_10_0,
@@ -1640,8 +1635,7 @@ public:
         MV_LEOPARD = MV_10_5,
         MV_SNOWLEOPARD = MV_10_6,
         MV_LION = MV_10_7,
-        MV_MOUNTAINLION = MV_10_8,
-        MV_MAVERICKS = MV_10_9
+        MV_MOUNTAINLION = MV_10_8
     };
     static const MacVersion MacintoshVersion;
 #endif
@@ -1794,9 +1788,7 @@ class QDebug;
 class QNoDebug;
 #ifndef QT_NO_DEBUG_STREAM
 Q_CORE_EXPORT_INLINE QDebug qDebug();
-#ifndef QT_NO_WARNING_OUTPUT
 Q_CORE_EXPORT_INLINE QDebug qWarning();
-#endif
 Q_CORE_EXPORT_INLINE QDebug qCritical();
 #else
 inline QNoDebug qDebug();

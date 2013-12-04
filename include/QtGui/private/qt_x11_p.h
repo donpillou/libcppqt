@@ -688,7 +688,6 @@ struct QX11Data
 
         XTabletStylus,
         XTabletEraser,
-        XTablet,
 
         NPredefinedAtoms,
 

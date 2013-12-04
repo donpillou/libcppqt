@@ -339,7 +339,6 @@ public:
     static QString getGConfString(const QString &key, const QString &fallback = QString());
 
     static QString getThemeName();
-    static QString getIconThemeName();
     virtual int getSpinboxArrowSize() const;
 
     static void setupGtkFileChooser(GtkWidget* gtkFileChooser, QWidget *parent,

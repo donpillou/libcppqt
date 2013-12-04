@@ -95,8 +95,6 @@ public:
     int processThreadWakeUp(int nsel);
 
     int bps_channel;
-    int holding_channel;
-    int loop_level;
     QScopedPointer<bpsIOHandlerData> ioData;
 };
 

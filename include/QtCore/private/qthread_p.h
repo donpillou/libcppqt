@@ -215,7 +215,6 @@ public:
     ~QThreadData();
 
     static QThreadData *current();
-    static void clearCurrentThreadData();
     static QThreadData *get2(QThread *thread)
     { Q_ASSERT_X(thread != 0, "QThread", "internal error"); return thread->d_func()->data; }
 
@@ -228,26 +227,6 @@ public:
         QMutexLocker locker(&postEventList.mutex);
         return canWait;
     }
-
-    // This class provides per-thread (by way of being a QThreadData
-    // member) storage for qFlagLocation()
-    class FlaggedDebugSignatures
-    {
-        static const uint Count = 2;
-
-        uint idx;
-        const char* locations[Count];
-
-    public:
-        FlaggedDebugSignatures() : idx(0)
-        { std::fill_n(locations, Count, static_cast<char*>(0)); }
-
-        void store(const char* method)
-        { locations[idx++ % Count] = method; }
-
-        bool contains(const char *method) const
-        { return std::find(locations, locations + Count, method) != locations + Count; }
-    };
 
     QThread *thread;
     Qt::HANDLE threadId;
@@ -263,8 +242,6 @@ public:
 # ifdef Q_OS_SYMBIAN
     RThread symbian_thread_handle;
 # endif
-
-    FlaggedDebugSignatures flaggedSignatures;
 };
 
 class QScopedLoopLevelCounter

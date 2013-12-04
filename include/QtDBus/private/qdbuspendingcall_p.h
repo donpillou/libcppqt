@@ -85,6 +85,7 @@ public:
     QList<int> metaTypes;
     int methodIdx;
 
+    bool autoDelete;
     // }
 
     mutable QMutex mutex;
@@ -102,7 +103,7 @@ public:
     // }
 
     QDBusPendingCallPrivate(const QDBusMessage &sent, QDBusConnectionPrivate *connection)
-        : sentMessage(sent), connection(connection), watcherHelper(0), pending(0), waitingForFinished(false)
+        : sentMessage(sent), connection(connection), autoDelete(false), watcherHelper(0), pending(0), waitingForFinished(false)
     { }
     ~QDBusPendingCallPrivate();
     bool setReplyCallback(QObject *target, const char *member);
