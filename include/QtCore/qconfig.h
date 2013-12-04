@@ -99,12 +99,6 @@
 # define QT_NO_OPENVG
 #endif
 
-#if defined(QT_NO_PHONON) && defined(QT_PHONON)
-# undef QT_NO_PHONON
-#elif !defined(QT_NO_PHONON)
-# define QT_NO_PHONON
-#endif
-
 #if defined(QT_NO_STL) && defined(QT_STL)
 # undef QT_NO_STL
 #elif !defined(QT_NO_STL)
@@ -133,18 +127,6 @@
 # undef QT_NO_STYLE_WINDOWSMOBILE
 #elif !defined(QT_NO_STYLE_WINDOWSMOBILE)
 # define QT_NO_STYLE_WINDOWSMOBILE
-#endif
-
-#if defined(QT_NO_STYLE_WINDOWSVISTA) && defined(QT_STYLE_WINDOWSVISTA)
-# undef QT_NO_STYLE_WINDOWSVISTA
-#elif !defined(QT_NO_STYLE_WINDOWSVISTA)
-# define QT_NO_STYLE_WINDOWSVISTA
-#endif
-
-#if defined(QT_NO_STYLE_WINDOWSXP) && defined(QT_STYLE_WINDOWSXP)
-# undef QT_NO_STYLE_WINDOWSXP
-#elif !defined(QT_NO_STYLE_WINDOWSXP)
-# define QT_NO_STYLE_WINDOWSXP
 #endif
 
 #define QT_NO_INOTIFY
