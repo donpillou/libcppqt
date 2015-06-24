@@ -1,3 +1,3 @@
 [submodule "qt"]
 	path = qt
-	url = git://gitorious.org/qt/qt.git
+	url = https://gitorious.org/qt/qt.git
