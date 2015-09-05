@@ -110,7 +110,7 @@ moc = cppApplication + {
     "bootstrap"
   }
   libPaths = {
-    "$(buildDir)/../bootstrap"
+    "$(outputDir)"
   }
 }
 
@@ -139,7 +139,7 @@ rcc = cppApplication + {
     "bootstrap"
   }
   libPaths = {
-    "$(buildDir)/../bootstrap"
+    "$(outputDir)"
   }
 }
 
@@ -182,7 +182,7 @@ uic = cppApplication + {
     "bootstrap"
   }
   libPaths = {
-    "$(buildDir)/../bootstrap"
+    "$(outputDir)"
   }
 }
 
@@ -333,7 +333,7 @@ QtCore4 = cppDynamicLibrary + {
     "$(mocIncludedHeaderFiles) $(mocHeaderFiles)" = {
       output = "$(buildDir)/moc_$(basename $(notdir $(file))).cpp"
       message = "$(notdir $(file)) (Qt moc)"
-      command = "$(buildDir)/../moc/moc.exe $(patsubst %,-D%,$(defines)) $(patsubst %,-I%,$(includePaths)) -D_MSC_VER=1600 -DWIN32 $(file) -o $(output)"
+      command = "$(outputDir)/moc.exe $(patsubst %,-D%,$(defines)) $(patsubst %,-I%,$(includePaths)) -D_MSC_VER=1600 -DWIN32 $(file) -o $(output)"
     }
     "$(patsubst $(rootDir)/%.cpp,$(buildDir)/%.cpp,$(mocSourceFiles))" = {
       folder = ".Qt"
@@ -342,7 +342,7 @@ QtCore4 = cppDynamicLibrary + {
       message = "$(notdir $(input)) (Qt moc)"
       command = {
         "copy $(subst /,\\,$(input)) $(subst /,\\,$(file)) >NUL"
-        "$(buildDir)/../moc/moc.exe $(patsubst %,-D%,$(defines)) $(patsubst %,-I%,$(includePaths)) -D_MSC_VER=1600 -DWIN32 $(input) -o $(output)"
+        "$(outputDir)/moc.exe $(patsubst %,-D%,$(defines)) $(patsubst %,-I%,$(includePaths)) -D_MSC_VER=1600 -DWIN32 $(input) -o $(output)"
       }
     }
   }
@@ -683,7 +683,7 @@ QtGui4 = cppDynamicLibrary + {
     "$(mocIncludedHeaderFiles) $(mocHeaderFiles)" = {
       output = "$(buildDir)/moc_$(basename $(notdir $(file))).cpp"
       message = "$(notdir $(file)) (Qt moc)"
-      command = "$(buildDir)/../moc/moc.exe $(patsubst %,-D%,$(defines)) $(patsubst %,-I%,$(includePaths)) -D_MSC_VER=1600 -DWIN32 $(file) -o $(output)"
+      command = "$(outputDir)/moc.exe $(patsubst %,-D%,$(defines)) $(patsubst %,-I%,$(includePaths)) -D_MSC_VER=1600 -DWIN32 $(file) -o $(output)"
     }
     "$(patsubst $(rootDir)/%.cpp,$(buildDir)/%.cpp,$(mocSourceFiles))" = {
       folder = ".Qt"
@@ -692,18 +692,18 @@ QtGui4 = cppDynamicLibrary + {
       message = "$(notdir $(input)) (Qt moc)"
       command = {
         "copy $(subst /,\\,$(input)) $(subst /,\\,$(file)) >NUL"
-        "$(buildDir)/../moc/moc.exe $(patsubst %,-D%,$(defines)) $(patsubst %,-I%,$(includePaths)) -D_MSC_VER=1600 -DWIN32 $(input) -o $(output)"
+        "$(outputDir)/moc.exe $(patsubst %,-D%,$(defines)) $(patsubst %,-I%,$(includePaths)) -D_MSC_VER=1600 -DWIN32 $(input) -o $(output)"
       }
     }
     "$(uiFiles)" = {
       output = "$(buildDir)/ui_$(basename $(notdir $(file))).h"
       message = "$(notdir $(file)) (Qt uic)"
-      command = "$(buildDir)/../uic/uic.exe $(file) -o $(output)"
+      command = "$(outputDir)/uic.exe $(file) -o $(output)"
     }
     "$(rccFiles)" = {
       output = "$(buildDir)/qrc_$(basename $(notdir $(file))).cpp"
       message = "$(notdir $(file)) (Qt rcc)"
-      command = "$(buildDir)/../rcc/rcc.exe -name $(basename $(notdir $(file))) $(file) -o $(output)"
+      command = "$(outputDir)/rcc.exe -name $(basename $(notdir $(file))) $(file) -o $(output)"
     }
   }
   defines = {
@@ -732,6 +732,6 @@ QtGui4 = cppDynamicLibrary + {
   }
   libs = { "QtCore4", "winmm", "imm32" }
   libPaths = {
-    "$(buildDir)/../QtCore4"
+    "$(outputDir)"
   }
 }
