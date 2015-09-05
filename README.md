@@ -7,6 +7,8 @@ Although the Qt C++ library is quite nice (except the meta object compiler stuff
 
 Somebody should port Qt to ordinary C++ build environments. I do not have the time to do this, but I came up with libcppqt.
 
-libcppqt's Git repository consists of the Qt library (included as Git submodule) and the include files required to use it. This allows Qt to be integrated into your project without the Qt build system or having to integrate their build system into yours. Instead, you have to configure your build system to compile and utilize the meta object compiler and Qt modules by its own rules. I do not say that using libcppqt is easy... but it is worth the effort if you like clean Git driven software development that does not involve millions of eccentric tools and scripts.
+libcppqt's Git repository consists of the include files required to use Qt. This allows Qt to be integrated into your project without the Qt build system or having to integrate their build system into yours. Instead, you have to configure your build system to compile and utilize the meta object compiler, the resource compilers and Qt modules with its own rules. I do not say that using libcppqt is easy... but it is worth the effort if you like clean Git driven software development that does not involve millions of eccentric tools and scripts.
+
+The example [HelloQt](../HelloQt) demonstrates how to use libcppqt.
 
 -- Donald Pillou
